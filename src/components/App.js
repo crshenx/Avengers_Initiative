@@ -5,6 +5,7 @@ import Home from "./Home";
 import Search from "./Search";
 import "../App.css";
 import Header from "./Header";
+import Cards from "./CardsContainer";
 import React, { useState, useEffect } from "react";
 import {
   BASE_URL,
@@ -13,12 +14,13 @@ import {
   URL_WITH_ENDPOINT,
   PRIVATE_KEY,
 } from "../sensitivedata";
+import CardsContainer from "./CardsContainer";
 const getHash = (ts, secretKey, publicKey) => {
   return MD5(ts + secretKey + publicKey).toString();
 };
 
 function App() {
-  let value = `sp`;
+  let value = `thor`;
   let ts = Date.now().toString();
   let publicKey = PUBLIC_API_KEY;
   let secretKey = PRIVATE_KEY;
@@ -29,10 +31,10 @@ function App() {
   useEffect(() => {
     fetch(url)
       .then((r) => r.json())
-      .then(setHeroes);
+      .then((data) => setHeroes(data.data.results));
   }, []);
 
-  console.log(heroes);
+  // console.log(heroes);
 
   return (
     <Router>
@@ -41,6 +43,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />}></Route>
       </Routes>
+      <CardsContainer heroes={heroes}/>
     </Router>
   );
 }

@@ -6,7 +6,7 @@ function CardsContainer({ heroes }) {
   // console.log(heroes)
 
   return (
-    <div>
+    <div className='media'>
         {heroes.map(hero => (
           <Cards 
             key={hero.id}

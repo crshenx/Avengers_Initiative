@@ -5,7 +5,7 @@ import Home from "./Home";
 import Search from "./Search";
 import "../App.css";
 import Header from "./Header";
-import Cards from "./CardsContainer";
+// import CardsContainer from "./CardsContainer";
 import React, { useState, useEffect } from "react";
 import {
   BASE_URL,
@@ -20,7 +20,7 @@ const getHash = (ts, secretKey, publicKey) => {
 };
 
 function App() {
-  let value = `thor`;
+  let value = `spi`;
   let ts = Date.now().toString();
   let publicKey = PUBLIC_API_KEY;
   let secretKey = PRIVATE_KEY;

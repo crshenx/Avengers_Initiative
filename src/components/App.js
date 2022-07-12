@@ -15,11 +15,15 @@ import {
   PRIVATE_KEY,
 } from "../sensitivedata";
 import CardsContainer from "./CardsContainer";
+import HeroTeam from "./HeroTeam";
 const getHash = (ts, secretKey, publicKey) => {
   return MD5(ts + secretKey + publicKey).toString();
 };
 
 function App() {
+  const [team, setTeam] = useState(null)
+
+
   let value = `spi`;
   let ts = Date.now().toString();
   let publicKey = PUBLIC_API_KEY;
@@ -44,6 +48,7 @@ function App() {
         <Route path="/search" element={<Search />}></Route>
       </Routes>
       <CardsContainer heroes={heroes}/>
+      <HeroTeam />
     </Router>
   );
 }

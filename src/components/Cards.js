@@ -5,16 +5,20 @@ function Cards({ hero }) {
 
   const [showCard, setShowCard] = useState(true)
 
+  function handleShown() {
+    setShowCard(!showCard)
+  }
+
 
   console.log(hero)
 
   return (
 <div className='media-content'>
-    <div>
+    <div className={showCard ? "" : "hidden"}>
         <div className="card">
-            <header class="card-header">
+            <header class="card-header"  onClick={handleShown}>
             <p class="card-header-title" id="toggle_shown">
-            {name}
+            Hide Hero
             </p>
             <button class="card-header-icon" aria-label="more options">
             <span class="icon">

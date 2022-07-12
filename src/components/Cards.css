@@ -1,0 +1,18 @@
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* .buttonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardButton {
+  justify-content: center;
+}*/
+
+.parentFlexSplit {
+  display: flex;
+  justify-content: space-between;
+}

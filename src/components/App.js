@@ -21,10 +21,10 @@ const getHash = (ts, secretKey, publicKey) => {
 };
 
 function App() {
-  const [team, setTeam] = useState(null)
+  // const [team, setTeam] = useState(null)
 
 
-  let value = `spi`;
+  let value = `thor`;
   let ts = Date.now().toString();
   let publicKey = PUBLIC_API_KEY;
   let secretKey = PRIVATE_KEY;

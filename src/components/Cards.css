@@ -16,3 +16,7 @@
   display: flex;
   justify-content: space-between;
 }
+
+.hideCards {
+  display: none;
+}

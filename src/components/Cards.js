@@ -4,15 +4,9 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import GroupAdd from '@mui/icons-material/GroupAdd';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import HideImageIcon from '@mui/icons-material/HideImage';
 import Button from '@mui/material/Button'
 import "./Cards.css"
 
@@ -30,13 +24,13 @@ function Cards({ hero }) {
 
   return (
 
-    <div className='cards'>
+    <div className={showCard ? "cards" : "hideCards"}>
       <Card sx={{ maxWidth: 500, m: 2}}>
         <CardHeader
 
           action={
-            <IconButton aria-label='settings'>
-                <MoreVertIcon/>
+            <IconButton aria-label='settings' onClick={handleShown}>
+                <HideImageIcon/>
             </IconButton>
           }
           title={name}

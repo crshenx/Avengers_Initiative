@@ -26,7 +26,7 @@ const getHash = (ts, secretKey, publicKey) => {
 
 function App() {
 
-  // const [team, setTeam] = useState(null)
+
 
 
 
@@ -69,6 +69,10 @@ function App() {
       .then((data) => setHeroes(data.data.results));
   }
 
+  function handleTeamUp(hero) {
+    console.log(hero)
+  }
+
   return (
     <Router>
       <Header />
@@ -88,8 +92,8 @@ function App() {
         />
       </Routes>
 
-      <CardsContainer heroes={heroes}/>
-      <HeroTeam />
+      <CardsContainer heroes={heroes} handleTeamUp={handleTeamUp}/>
+      <HeroTeam heroes={heroes}/>
 
     </Router>
   );

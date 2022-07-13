@@ -4,7 +4,7 @@ import Cards from './Cards'
 import "./Cards.css"
 
 
-function CardsContainer({ heroes }) {
+function CardsContainer({ heroes, handleTeamUp }) {
   // const heroData = heroes.data.results
   // console.log(heroes)
 
@@ -15,6 +15,7 @@ function CardsContainer({ heroes }) {
           <Cards 
             key={hero.id}
             hero={hero}
+            handleTeamUp={handleTeamUp}
             // image={hero.thumbnail}
             // filetype={hero.extension}
             

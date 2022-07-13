@@ -1,0 +1,11 @@
+.headerBox {
+    display: flex;
+    align-content: center;
+    width: 100vw;
+    justify-content: center;
+}
+
+.avengersLogo {
+    width: 400px;
+    height: auto;
+}

@@ -11,7 +11,7 @@ import HideImageIcon from '@mui/icons-material/HideImage';
 import Button from '@mui/material/Button'
 import "./Cards.css"
 
-function Cards({ hero }) {
+function Cards({ hero, handleTeamUp }) {
   const {name, thumbnail, description, urls, comics, resourceURI} = hero
 
   const [showCard, setShowCard] = useState(true)
@@ -51,7 +51,7 @@ function Cards({ hero }) {
         <CardActions disableSpacing className='parentFlexSplit'>
             {/* <Button className="cardButton" variant="contained">Flip</Button> */}
             <Button className="cardButton" variant="contained" href={urls[0].url}>Details</Button>
-            <Button className="cardButton" variant="contained">Team Up</Button>
+            <Button className="cardButton" variant="contained" onClick={() => handleTeamUp(hero)}>Team Up</Button>
             <Button className="cardButton" variant="contained" href={comics.collectionURI}>Comics</Button>
         </CardActions>
       </Card>

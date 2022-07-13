@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader';
@@ -57,6 +58,7 @@ function Cards({ hero }) {
     </div>
 
   )
+
 }
 
-export default Cards
+export default Cards;

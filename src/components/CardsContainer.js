@@ -1,12 +1,15 @@
+
 import React from 'react'
 import Cards from './Cards'
 import "./Cards.css"
+
 
 function CardsContainer({ heroes }) {
   // const heroData = heroes.data.results
   // console.log(heroes)
 
   return (
+
     <div  class="cardContainer">
         {heroes.map(hero => (
           <Cards 
@@ -17,8 +20,9 @@ function CardsContainer({ heroes }) {
             
           />
         ))}
+
     </div>
-  )
+  );
 }
 
-export default CardsContainer
+export default CardsContainer;

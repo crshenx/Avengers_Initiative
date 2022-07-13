@@ -10,7 +10,7 @@ function CardsContainer({ heroes, handleTeamUp }) {
 
   return (
 
-    <div  class="cardContainer">
+    <div  className="cardContainer">
         {heroes.map(hero => (
           <Cards 
             key={hero.id}

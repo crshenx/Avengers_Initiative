@@ -26,15 +26,13 @@ const getHash = (ts, secretKey, publicKey) => {
 
 function App() {
 
-  // const [team, setTeam] = useState(null)
-
-
-
-
   const [heroes, setHeroes] = useState([]);
   const [search, setSearch] = useState("");
   const [urlEndPoints, setUrlEndPoints] = useState("");
   const [searchInput, setSearchInput] = useState("");
+  const [teamUp, setTeamUp] = useState([])
+
+
   let value = searchInput;
   const nameStartsWith = "&nameStartsWith=";
 
@@ -69,6 +67,25 @@ function App() {
       .then((data) => setHeroes(data.data.results));
   }
 
+  function handleTeamUp(hero) {
+    fetch('http://localhost:4000/results', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/json',
+      },
+      body: JSON.stringify(hero)
+    })
+    .then(r => r.json())
+    .then(fetchLocalTeam)
+    
+  }
+
+  function fetchLocalTeam() {
+    fetch('http://localhost:4000/results')
+    .then(res => res.json())
+    .then(setTeamUp)
+  }
+
   return (
     <Router>
       <Header />
@@ -88,8 +105,8 @@ function App() {
         />
       </Routes>
 
-      <CardsContainer heroes={heroes}/>
-      <HeroTeam />
+      <CardsContainer heroes={heroes} handleTeamUp={handleTeamUp}/>
+      <HeroTeam teamUp={teamUp} setTeamUp={setTeamUp} fetchLocalTeam={fetchLocalTeam}/>
 
     </Router>
   );

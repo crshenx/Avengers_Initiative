@@ -1,8 +1,6 @@
-
-import React from 'react'
-import Cards from './Cards'
-import "./Cards.css"
-
+import React from "react";
+import Cards from "./Cards";
+import "./Cards.css";
 
 function CardsContainer({ heroes, handleTeamUp }) {
   // const heroData = heroes.data.results

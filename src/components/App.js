@@ -5,7 +5,12 @@ import Home from "./Home";
 import SearchBar from "./SearchBar";
 import "../App.css";
 import Header from "./Header";
+
+
+
+
 import React, { useState, useEffect, useRef } from "react";
+
 import {
   BASE_URL,
   ENDPOINT,
@@ -14,17 +19,25 @@ import {
   PRIVATE_KEY,
 } from "../sensitivedata";
 import CardsContainer from "./CardsContainer";
+import HeroTeam from "./HeroTeam";
 const getHash = (ts, secretKey, publicKey) => {
   return MD5(ts + secretKey + publicKey).toString();
 };
 
 function App() {
+
+  // const [team, setTeam] = useState(null)
+
+
+
+
   const [heroes, setHeroes] = useState([]);
   const [search, setSearch] = useState("");
   const [urlEndPoints, setUrlEndPoints] = useState("");
   const [searchInput, setSearchInput] = useState("");
   let value = searchInput;
   const nameStartsWith = "&nameStartsWith=";
+
   let ts = Date.now().toString();
   let publicKey = PUBLIC_API_KEY;
   let secretKey = PRIVATE_KEY;
@@ -74,7 +87,10 @@ function App() {
           }
         />
       </Routes>
-      <CardsContainer heroes={heroes} />
+
+      <CardsContainer heroes={heroes}/>
+      <HeroTeam />
+
     </Router>
   );
 }

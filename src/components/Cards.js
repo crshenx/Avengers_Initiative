@@ -1,59 +1,64 @@
-import React from "react";
+
+import React, { useState } from 'react'
+import Card from '@mui/material/Card'
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import HideImageIcon from '@mui/icons-material/HideImage';
+import Button from '@mui/material/Button'
+import "./Cards.css"
 
 function Cards({ hero }) {
-  const { name, thumbnail, description, urls, comics } = hero;
+  const {name, thumbnail, description, urls, comics, resourceURI} = hero
 
-  // console.log(hero);
+  const [showCard, setShowCard] = useState(true)
+
+  function handleShown() {
+    setShowCard(!showCard)
+  }
+
+
+  console.log(hero)
+
   return (
-    <div className="card">
-      <header className="card-header">
-        <p className="card-header-title" id="toggle_shown">
-          Card header
-        </p>
-        <button className="card-header-icon" aria-label="more options">
-          <span className="icon">
-            <i className="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </button>
-      </header>
-      <div className="card-image">
-        <figure className="image is-4by3">
-          <img
-            src={thumbnail.path + "." + thumbnail.extension}
-            alt="hero thumbnail"
-          />
-        </figure>
-      </div>
-      <div className="card-content">
-        <div className="media">
-          <div className="media-left">
-            <figure className="image is-48x48">
-              <img
-                src={thumbnail.path + "." + thumbnail.extension}
-                alt="Main hero image"
-              />
-            </figure>
-          </div>
-          <div className="media-content">
-            <p className="title is-4">{name}</p>
-            <a href={urls[0].url}>Details</a>
-            <br />
-            <a href={comics.collectionURI}>Comics</a>
-          </div>
-        </div>
 
-        <div className="content">{description}</div>
-        <footer className="card-footer">
-          <button href="#" className="card-footer-item">
-            Team Up!
-          </button>
-          <button href="#" className="card-footer-item">
-            Dismiss
-          </button>
-        </footer>
-      </div>
+    <div className={showCard ? "cards" : "hideCards"}>
+      <Card sx={{ maxWidth: 500, m: 2}}>
+        <CardHeader
+
+          action={
+            <IconButton aria-label='settings' onClick={handleShown}>
+                <HideImageIcon/>
+            </IconButton>
+          }
+          title={name}
+        />
+        <CardMedia 
+          className='mainPic'
+          component="img"
+          image={thumbnail.path + "." + thumbnail.extension}
+          height="500"
+        />
+        <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          
+          {description !== "" ? description : "No Description Available, Click the details link for more information about his hero"}
+        </Typography>
+        </CardContent>
+        <CardActions disableSpacing className='parentFlexSplit'>
+            {/* <Button className="cardButton" variant="contained">Flip</Button> */}
+            <Button className="cardButton" variant="contained" href={urls[0].url}>Details</Button>
+            <Button className="cardButton" variant="contained">Team Up</Button>
+            <Button className="cardButton" variant="contained" href={comics.collectionURI}>Comics</Button>
+        </CardActions>
+      </Card>
     </div>
-  );
+
+  )
+
 }
 
 export default Cards;

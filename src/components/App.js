@@ -2,14 +2,11 @@
 import MD5 from "crypto-js/md5";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
-import SearchBar from "./SearchBar";
+// import SearchBar from "./SearchBar";
 import "../App.css";
 import Header from "./Header";
-
-
-
-
-import React, { useState, useEffect, useRef } from "react";
+import MyTeam from "./MyTeam";
+import React, { useState, useEffect } from "react";
 
 import {
   BASE_URL,
@@ -25,19 +22,16 @@ const getHash = (ts, secretKey, publicKey) => {
 };
 
 function App() {
-
   // const [team, setTeam] = useState(null)
 
-
-
-
   const [heroes, setHeroes] = useState([]);
-  const [search, setSearch] = useState("");
   const [urlEndPoints, setUrlEndPoints] = useState("");
   const [searchInput, setSearchInput] = useState("");
+
+  // console.log(heroes);
+
   let value = searchInput;
   const nameStartsWith = "&nameStartsWith=";
-
   let ts = Date.now().toString();
   let publicKey = PUBLIC_API_KEY;
   let secretKey = PRIVATE_KEY;
@@ -53,14 +47,13 @@ function App() {
   function handleChange(e) {
     setSearchInput(e.target.value);
     setUrlEndPoints(nameStartsWith);
-    setSearch(searchInput);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     setUrlEndPoints(nameStartsWith);
-    setSearch(searchInput);
     searchFetch();
+    setSearchInput("");
   }
 
   function searchFetch() {
@@ -71,26 +64,20 @@ function App() {
 
   return (
     <Router>
-      <Header />
+      <Header
+        searchInput={searchInput}
+        heroes={heroes}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        position="sticky"
+      />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/search"
-          element={
-            <SearchBar
-              searchInput={searchInput}
-              search={search}
-              heroes={heroes}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-            />
-          }
-        />
+        <Route path="/myteam" element={<MyTeam />} />
       </Routes>
 
-      <CardsContainer heroes={heroes}/>
+      <CardsContainer heroes={heroes} />
       <HeroTeam />
-
     </Router>
   );
 }

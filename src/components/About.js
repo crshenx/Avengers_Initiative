@@ -17,14 +17,21 @@ function About() {
         alignItems: 'center'
     }
 
+    const picStyle ={
+        display: 'block',
+        height: '100vh',
+        justifyItems: 'center',
+
+    }
+
 
 
 
 
   return (
-    <div>
+    <div className='aboutDiv'>
         <Box sx={{ flexGrow: 1}}>
-            <Grid container spacing={2} columns={10}>
+            <Grid className='aboutGrid' container spacing={0} columns={10}>
                 <Grid item xs={5}>
                     <Card className="aboutCard" style={cardStyle}>
                     <CardContent>
@@ -92,9 +99,17 @@ function About() {
                             </Link>
                         </Typography>
                         </CardContent>
-                        <CardMedia>
-
-                        </CardMedia>
+                    </Card>
+                </Grid>
+                <Grid className='picGrid' item xs={10}>
+                    <Card className="aboutPic" style={picStyle}>
+                    <CardMedia 
+                            component="img"
+                            // width="100vw"
+                            image="https://media.comicbook.com/wp-content/uploads/2012/09/Avengers_1_2_3_Covers.jpg"
+                            alt="avengers picture"
+                            
+                        />
                     </Card>
                 </Grid>
             </Grid>

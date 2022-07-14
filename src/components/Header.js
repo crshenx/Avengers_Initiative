@@ -7,12 +7,47 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-import MenuListComposition from "./MenuList";
-import { MenuList } from "@mui/material";
+// import MenuListComposition from "./MenuList";
+// import { MenuList } from "@mui/material";
+// import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import Menu from "@mui/material/Menu";
+// import Menu from "@material-ui/core/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import "./Header.css";
 
 function Header({ searchInput, heroes, handleChange, handleSubmit }) {
   // menu dopdown state
+  const dummyMenuItems = [
+    {
+      title: "Add Item",
+    },
+    {
+      title: "Move Item",
+    },
+    {
+      title: "Delete Item",
+    },
+  ];
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
+  const nativeOnChange = (e) => {
+    const detail = {
+      selectedIndex: e.target.selectedIndex,
+    };
+    e.target.selectedIndex = 0;
+
+    e.target.dispatchEvent(new CustomEvent("itemClick", { detail }));
+  };
+
+  const itemClick = (e) => {
+    console.log("Item Clicked " + e.detail);
+  };
   //end menu state
 
   return (
@@ -25,8 +60,27 @@ function Header({ searchInput, heroes, handleChange, handleSubmit }) {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-          ></IconButton>
-          <MenuListComposition />
+            onClick={handleClick}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            {dummyMenuItems.map((item) => (
+              <MenuItem
+                onClick={handleClose}
+                key={item.title}
+                value={item.title}
+              >
+                {item.title}
+              </MenuItem>
+            ))}
+          </Menu>
           <Typography
             variant="h6"
             noWrap

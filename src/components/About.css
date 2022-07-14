@@ -1,0 +1,12 @@
+.aboutItems {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.aboutDiv .aboutGrid .picGrid .aboutPic {
+    height: auto;
+    width: 100vw;
+    object-fit: cover;
+    object-position: 50% 20%;
+}

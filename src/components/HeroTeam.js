@@ -13,7 +13,7 @@ function HeroTeam({ teamUp, setTeamUp, fetchLocalTeam}) {
         .then(setTeamUp)
     }, [])
     
-    // console.log(teamUp)
+    console.log(teamUp)
 
     function handleRetire(hero) {
         fetch(`http://localhost:4000/results/${hero.id}`, {

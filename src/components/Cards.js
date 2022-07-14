@@ -50,7 +50,7 @@ function Cards({ hero, handleTeamUp }) {
             {/* <Button className="cardButton" variant="contained">Flip</Button> */}
             <Button className="cardButton" variant="contained" href={urls[0].url}>Details</Button>
             <Button className="cardButton" variant="contained" onClick={() => handleTeamUp(hero)}>Team Up</Button>
-            <Button className="cardButton" variant="contained" href={comics.collectionURI}>Comics</Button>
+            <Button className="cardButton" variant="contained" href={urls[1].url}>Comics</Button>
 
         </CardActions>
       </Card>

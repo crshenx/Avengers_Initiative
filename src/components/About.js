@@ -18,7 +18,7 @@ function About() {
                         Word of the Day
                         </Typography>
                         <Typography variant="h5" component="div">
-                        poop
+                        grin
                         </Typography>
                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         adjective
@@ -38,7 +38,7 @@ function About() {
                             Word of the Day
                             </Typography>
                             <Typography variant="h5" component="div">
-                            poop
+                            grin
                             </Typography>
                             <Typography sx={{ mb: 1.5 }} color="text.secondary">
                             adjective

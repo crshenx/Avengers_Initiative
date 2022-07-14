@@ -7,19 +7,16 @@ function CardsContainer({ heroes, handleTeamUp }) {
   // console.log(heroes)
 
   return (
-
-    <div  className="cardContainer">
-        {heroes.map(hero => (
-          <Cards 
-            key={hero.id}
-            hero={hero}
-            handleTeamUp={handleTeamUp}
-            // image={hero.thumbnail}
-            // filetype={hero.extension}
-            
-          />
-        ))}
-
+    <div className="cardContainer">
+      {heroes.map((hero) => (
+        <Cards
+          key={hero.id}
+          hero={hero}
+          handleTeamUp={handleTeamUp}
+          // image={hero.thumbnail}
+          // filetype={hero.extension}
+        />
+      ))}
     </div>
   );
 }

@@ -1,34 +1,32 @@
-// import logo from "../assets/logo.svg";
+import React, { useState, useEffect } from "react";
 import MD5 from "crypto-js/md5";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
-// import SearchBar from "./SearchBar";
 import "../App.css";
 import Header from "./Header";
 import MyTeam from "./MyTeam";
-import React, { useState, useEffect } from "react";
-
+import { theme } from "./AppTheme.js";
 import {
-  BASE_URL,
-  ENDPOINT,
   PUBLIC_API_KEY,
   URL_WITH_ENDPOINT,
   PRIVATE_KEY,
 } from "../sensitivedata";
 import CardsContainer from "./CardsContainer";
 import HeroTeam from "./HeroTeam";
+
+import { ThemeProvider } from "@emotion/react";
+
 import About from "./About";
+
 const getHash = (ts, secretKey, publicKey) => {
   return MD5(ts + secretKey + publicKey).toString();
 };
 
 function App() {
-
-
   const [heroes, setHeroes] = useState([]);
   const [urlEndPoints, setUrlEndPoints] = useState("");
   const [searchInput, setSearchInput] = useState("");
-  const [teamUp, setTeamUp] = useState([])
+  const [teamUp, setTeamUp] = useState([]);
 
   let value = searchInput;
   const nameStartsWith = "&nameStartsWith=";
@@ -63,25 +61,26 @@ function App() {
   }
 
   function handleTeamUp(hero) {
-    fetch('http://localhost:4000/results', {
-      method: 'POST',
+    fetch("http://localhost:4000/results", {
+      method: "POST",
       headers: {
-        'Content-Type': 'Application/json',
+        "Content-Type": "Application/json",
       },
-      body: JSON.stringify(hero)
+      body: JSON.stringify(hero),
     })
-    .then(r => r.json())
-    .then(fetchLocalTeam)
-    
+      .then((r) => r.json())
+      .then(fetchLocalTeam);
   }
 
   function fetchLocalTeam() {
-    fetch('http://localhost:4000/results')
-    .then(res => res.json())
-    .then(setTeamUp)
+    fetch("http://localhost:4000/results")
+      .then((res) => res.json())
+      .then(setTeamUp);
   }
 
   return (
+
+<ThemeProvider theme={theme}>
     <Router>
       <Header
         searchInput={searchInput}
@@ -97,6 +96,8 @@ function App() {
       </Routes>
 
     </Router>
+     </ThemeProvider>
+
   );
 }
 

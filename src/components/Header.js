@@ -1,5 +1,4 @@
 import React from "react";
-// MUI STYLE IMPORTS
 import { Search, SearchIconWrapper, StyledInputBase } from "./HeaderStyles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -7,25 +6,21 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-// import MenuListComposition from "./MenuList";
-// import { MenuList } from "@mui/material";
-// import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import Menu from "@mui/material/Menu";
-// import Menu from "@material-ui/core/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import "./Header.css";
 
-function Header({ searchInput, heroes, handleChange, handleSubmit }) {
+function Header({ searchInput, handleChange, handleSubmit }) {
   // menu dopdown state
   const dummyMenuItems = [
     {
-      title: "Add Item",
+      title: "Home",
     },
     {
-      title: "Move Item",
+      title: "Team up!",
     },
     {
-      title: "Delete Item",
+      title: "About",
     },
   ];
   const [anchorEl, setAnchorEl] = React.useState(null);

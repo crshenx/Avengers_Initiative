@@ -13,7 +13,11 @@ import {
 } from "../sensitivedata";
 import CardsContainer from "./CardsContainer";
 import HeroTeam from "./HeroTeam";
+
 import { ThemeProvider } from "@emotion/react";
+
+import About from "./About";
+
 const getHash = (ts, secretKey, publicKey) => {
   return MD5(ts + secretKey + publicKey).toString();
 };
@@ -75,28 +79,25 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        <Header
-          searchInput={searchInput}
-          heroes={heroes}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          position="sticky"
-        />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/myteam" element={<MyTeam />} />
-        </Routes>
 
-        <CardsContainer heroes={heroes} handleTeamUp={handleTeamUp} />
-        <HeroTeam
-          teamUp={teamUp}
-          setTeamUp={setTeamUp}
-          fetchLocalTeam={fetchLocalTeam}
-        />
-      </Router>
-    </ThemeProvider>
+<ThemeProvider theme={theme}>
+    <Router>
+      <Header
+        searchInput={searchInput}
+        heroes={heroes}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        position="sticky"
+      />
+      <Routes>
+        <Route path="/" element={<CardsContainer heroes={heroes} handleTeamUp={handleTeamUp}/>} />
+        <Route path="/myteam" element={<HeroTeam teamUp={teamUp} setTeamUp={setTeamUp} fetchLocalTeam={fetchLocalTeam}/>} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+
+    </Router>
+     </ThemeProvider>
+
   );
 }
 

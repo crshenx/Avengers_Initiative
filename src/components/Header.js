@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Navigate, Link } from "react-router-dom";
 import { Search, SearchIconWrapper, StyledInputBase } from "./HeaderStyles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,16 +15,22 @@ function Header({ searchInput, handleChange, handleSubmit }) {
   // menu dopdown state
   const dummyMenuItems = [
     {
-      title: "Home",
+
+      title: <Link to="/">Home</Link>,
+      id: 1
     },
     {
-      title: "Team up!",
+      title: <Link to="myteam">My Team</Link>,
+      id: 2
     },
     {
-      title: "About",
+      title: <Link to="about">About Us</Link>,
+      id: 3
+
     },
   ];
   const [anchorEl, setAnchorEl] = React.useState(null);
+  // const [buttonId, setButtonId] = React.useState(null)
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
@@ -44,6 +51,8 @@ function Header({ searchInput, handleChange, handleSubmit }) {
     console.log("Item Clicked " + e.detail);
   };
   //end menu state
+
+  // console.log(anchorEl)
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -69,7 +78,7 @@ function Header({ searchInput, handleChange, handleSubmit }) {
             {dummyMenuItems.map((item) => (
               <MenuItem
                 onClick={handleClose}
-                key={item.title}
+                key={item.id}
                 value={item.title}
               >
                 {item.title}
@@ -100,8 +109,10 @@ function Header({ searchInput, handleChange, handleSubmit }) {
           </Search>
         </Toolbar>
       </AppBar>
+      
     </Box>
   );
 }
+
 
 export default Header;

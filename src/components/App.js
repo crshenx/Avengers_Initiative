@@ -17,6 +17,7 @@ import {
 } from "../sensitivedata";
 import CardsContainer from "./CardsContainer";
 import HeroTeam from "./HeroTeam";
+import About from "./About";
 const getHash = (ts, secretKey, publicKey) => {
   return MD5(ts + secretKey + publicKey).toString();
 };
@@ -90,12 +91,10 @@ function App() {
         position="sticky"
       />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/myteam" element={<MyTeam />} />
+        <Route path="/" element={<CardsContainer heroes={heroes} handleTeamUp={handleTeamUp}/>} />
+        <Route path="/myteam" element={<HeroTeam teamUp={teamUp} setTeamUp={setTeamUp} fetchLocalTeam={fetchLocalTeam}/>} />
+        <Route path="/about" element={<About />} />
       </Routes>
-
-      <CardsContainer heroes={heroes} handleTeamUp={handleTeamUp}/>
-      <HeroTeam teamUp={teamUp} setTeamUp={setTeamUp} fetchLocalTeam={fetchLocalTeam}/>
 
     </Router>
   );

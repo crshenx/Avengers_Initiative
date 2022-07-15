@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import MD5 from "crypto-js/md5";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
 import "../App.css";
 import Header from "./Header";
-import MyTeam from "./MyTeam";
 import { theme } from "./AppTheme.js";
 import {
   PUBLIC_API_KEY,
@@ -60,6 +58,14 @@ function App() {
       .then((data) => setHeroes(data.data.results));
   }
 
+  function resetHome() {
+    searchInput("");
+    setUrlEndPoints("");
+    fetch(url)
+      .then((r) => r.json())
+      .then((data) => setHeroes(data.data.results));
+  }
+
   function handleTeamUp(hero) {
     fetch("http://localhost:4000/results", {
       method: "POST",
@@ -79,25 +85,37 @@ function App() {
   }
 
   return (
-
-<ThemeProvider theme={theme}>
-    <Router>
-      <Header
-        searchInput={searchInput}
-        heroes={heroes}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        position="sticky"
-      />
-      <Routes>
-        <Route path="/" element={<CardsContainer heroes={heroes} handleTeamUp={handleTeamUp}/>} />
-        <Route path="/myteam" element={<HeroTeam teamUp={teamUp} setTeamUp={setTeamUp} fetchLocalTeam={fetchLocalTeam}/>} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-
-    </Router>
-     </ThemeProvider>
-
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Header
+          searchInput={searchInput}
+          heroes={heroes}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          resetHome={resetHome}
+          position="sticky"
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <CardsContainer heroes={heroes} handleTeamUp={handleTeamUp} />
+            }
+          />
+          <Route
+            path="/myteam"
+            element={
+              <HeroTeam
+                teamUp={teamUp}
+                setTeamUp={setTeamUp}
+                fetchLocalTeam={fetchLocalTeam}
+              />
+            }
+          />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 

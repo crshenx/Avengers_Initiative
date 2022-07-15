@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Search, SearchIconWrapper, StyledInputBase } from "./HeaderStyles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -11,48 +11,33 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import "./Header.css";
 
-function Header({ searchInput, handleChange, handleSubmit }) {
+function Header({ searchInput, handleChange, handleSubmit, resetHome }) {
   // menu dopdown state
   const dummyMenuItems = [
     {
-
-      title: <Link to="/">Home</Link>,
-      id: 1
+      title: (
+        <Link to="/" onClick={resetHome}>
+          Home
+        </Link>
+      ),
+      id: 1,
     },
     {
       title: <Link to="myteam">My Team</Link>,
-      id: 2
+      id: 2,
     },
     {
       title: <Link to="about">About Us</Link>,
-      id: 3
-
+      id: 3,
     },
   ];
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [buttonId, setButtonId] = React.useState(null)
+  const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const nativeOnChange = (e) => {
-    const detail = {
-      selectedIndex: e.target.selectedIndex,
-    };
-    e.target.selectedIndex = 0;
-
-    e.target.dispatchEvent(new CustomEvent("itemClick", { detail }));
-  };
-
-  const itemClick = (e) => {
-    console.log("Item Clicked " + e.detail);
-  };
-  //end menu state
-
-  // console.log(anchorEl)
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -76,23 +61,22 @@ function Header({ searchInput, handleChange, handleSubmit }) {
             onClose={handleClose}
           >
             {dummyMenuItems.map((item) => (
-              <MenuItem
-                onClick={handleClose}
-                key={item.id}
-                value={item.title}
-              >
+              <MenuItem onClick={handleClose} key={item.id} value={item.title}>
                 {item.title}
               </MenuItem>
             ))}
           </Menu>
+
           <Typography
             variant="h6"
             noWrap
             component="div"
+            align="center"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             AVENGERS INITIATIVE APP
           </Typography>
+
           <Search>
             <SearchIconWrapper>
               <Search />
@@ -109,10 +93,8 @@ function Header({ searchInput, handleChange, handleSubmit }) {
           </Search>
         </Toolbar>
       </AppBar>
-      
     </Box>
   );
 }
-
 
 export default Header;

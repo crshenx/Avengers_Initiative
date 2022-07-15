@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import HideImageIcon from "@mui/icons-material/HideImage";
 import Button from "@mui/material/Button";
 import "./Cards.css";
+import ReactReadMoreReadLess from "react-read-more-read-less";
 
 function Cards({ hero, handleTeamUp }) {
   const { name, thumbnail, description, urls, comics, resourceURI } = hero;
@@ -19,7 +20,12 @@ function Cards({ hero, handleTeamUp }) {
     setShowCard(!showCard);
   }
 
-  // console.log(hero);
+  // read more functionality
+  const stringDescription =
+    description !== ""
+      ? description
+      : "No Description Available, Click the details link for more information about his hero";
+  //end readmore functionality
 
   return (
     <div className={showCard ? "cards" : "hideCards"}>
@@ -40,9 +46,15 @@ function Cards({ hero, handleTeamUp }) {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {description !== ""
-              ? description
-              : "No Description Available, Click the details link for more information about his hero"}
+            <ReactReadMoreReadLess
+              charLimit={75}
+              readMoreText={"Read more"}
+              readLessText={"Read less"}
+              readMoreClassName="read-more-less--more"
+              readLessClassName="read-more-less--less"
+            >
+              {stringDescription}
+            </ReactReadMoreReadLess>
           </Typography>
         </CardContent>
 

@@ -11,10 +11,11 @@ import {
 } from "../sensitivedata";
 import CardsContainer from "./CardsContainer";
 import HeroTeam from "./HeroTeam";
-
+import { Container } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 
 import About from "./About";
+// import { Container } from "@mui/system";
 
 const getHash = (ts, secretKey, publicKey) => {
   return MD5(ts + secretKey + publicKey).toString();
@@ -99,17 +100,21 @@ function App() {
           <Route
             path="/"
             element={
-              <CardsContainer heroes={heroes} handleTeamUp={handleTeamUp} />
+              <Container maxWidth={"false"}>
+                <CardsContainer heroes={heroes} handleTeamUp={handleTeamUp} />
+              </Container>
             }
           />
           <Route
             path="/myteam"
             element={
-              <HeroTeam
-                teamUp={teamUp}
-                setTeamUp={setTeamUp}
-                fetchLocalTeam={fetchLocalTeam}
-              />
+              <Container maxWidth={"false"}>
+                <HeroTeam
+                  teamUp={teamUp}
+                  setTeamUp={setTeamUp}
+                  fetchLocalTeam={fetchLocalTeam}
+                />
+              </Container>
             }
           />
           <Route path="/about" element={<About />} />

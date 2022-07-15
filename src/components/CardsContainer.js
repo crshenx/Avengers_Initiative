@@ -1,3 +1,4 @@
+import { Grid, Container } from "@mui/material";
 import React from "react";
 import Cards from "./Cards";
 import "./Cards.css";
@@ -7,7 +8,16 @@ function CardsContainer({ heroes, handleTeamUp }) {
   // console.log(heroes)
 
   return (
-    <div className="cardContainer">
+    // <div className="cardContainer">
+
+    <Grid
+      container
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      rowSpacing={1}
+      columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+    >
       {heroes.map((hero) => (
         <Cards
           key={hero.id}
@@ -17,7 +27,9 @@ function CardsContainer({ heroes, handleTeamUp }) {
           // filetype={hero.extension}
         />
       ))}
-    </div>
+    </Grid>
+
+    // </div>
   );
 }
 

@@ -24,7 +24,7 @@ function Cards({ hero, handleTeamUp }) {
   const stringDescription =
     description !== ""
       ? description
-      : "No Description Available, Click the details link for more information about his hero";
+      : "No Description Available, Click the details link for more information";
   //end readmore functionality
 
   return (
